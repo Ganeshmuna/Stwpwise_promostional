@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StepWise - Smart Insole System for Diabetic Foot Ulcer Prevention</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #10b981 100%);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 0 40px rgba(59, 130, 246, 0.8);
+            }
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #3b82f6, #10b981);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .mobile-menu.open {
+            max-height: 400px;
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 rounded-lg gradient-bg flex items-center justify-center">
+                        <i class="fas fa-shoe-prints text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold gradient-text">StepWise</span>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-blue-600 font-medium transition">Home</a>
+                    <a href="#problem"
+                        class="nav-link text-gray-700 hover:text-blue-600 font-medium transition">Problem</a>
+                    <a href="#solution"
+                        class="nav-link text-gray-700 hover:text-blue-600 font-medium transition">Solution</a>
+                    <a href="#features"
+                        class="nav-link text-gray-700 hover:text-blue-600 font-medium transition">Features</a>
+                    <a href="#how-it-works"
+                        class="nav-link text-gray-700 hover:text-blue-600 font-medium transition">How It Works</a>
+                    <a href="#contact"
+                        class="gradient-bg text-white px-6 py-2 rounded-full font-medium hover:opacity-90 transition shadow-lg shadow-blue-500/30">
+                        Contact Us
+                    </a>
+                </div>
+
+                <button id="menu-btn" class="md:hidden text-gray-700">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+
+            <div id="mobile-menu" class="mobile-menu md:hidden">
+                <div class="py-4 space-y-3">
+                    <a href="#home" class="block text-gray-700 hover:text-blue-600 font-medium py-2">Home</a>
+                    <a href="#problem" class="block text-gray-700 hover:text-blue-600 font-medium py-2">Problem</a>
+                    <a href="#solution" class="block text-gray-700 hover:text-blue-600 font-medium py-2">Solution</a>
+                    <a href="#features" class="block text-gray-700 hover:text-blue-600 font-medium py-2">Features</a>
+                    <a href="#how-it-works" class="block text-gray-700 hover:text-blue-600 font-medium py-2">How It
+                        Works</a>
+                    <a href="#contact"
+                        class="block gradient-bg text-white px-6 py-2 rounded-full font-medium text-center">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen gradient-bg relative overflow-hidden pt-16">
+        <div class="absolute top-20 left-10 w-72 h-72 bg-white/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-green-400/10 rounded-full blur-3xl"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
+                <div class="fade-in">
+                    <div class="inline-flex items-center bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
+                        <i class="fas fa-heartbeat text-white mr-2"></i>
+                        <span class="text-white/90 text-sm font-medium">Preventive Healthcare Technology</span>
+                    </div>
+
+                    <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-4 tracking-tight">
+                        STEP<span class="text-green-300">WISE</span>
+                    </h1>
+
+                    <p class="text-xl md:text-2xl text-white/90 font-medium mb-4">
+                        Smart Insole System for Diabetic Foot Ulcer Prevention
+                    </p>
+
+                    <p class="text-lg text-white/80 mb-8 flex flex-wrap items-center gap-3">
+                        <span class="inline-flex items-center">
+                            <i class="fas fa-robot text-green-300 mr-2"></i>
+                            AI-Based
+                        </span>
+                        <span class="w-1.5 h-1.5 bg-white/60 rounded-full"></span>
+                        <span class="inline-flex items-center">
+                            <i class="fas fa-satellite-dish text-green-300 mr-2"></i>
+                            Real-Time Monitoring
+                        </span>
+                        <span class="w-1.5 h-1.5 bg-white/60 rounded-full"></span>
+                        <span class="inline-flex items-center">
+                            <i class="fas fa-shield-alt text-green-300 mr-2"></i>
+                            Preventive Healthcare
+                        </span>
+                    </p>
+
+                    <div class="flex flex-wrap gap-4">
+                        <button
+                            class="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-50 transition shadow-xl hover:shadow-2xl flex items-center space-x-2">
+                            <span>Get Started</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <button
+                            class="border-2 border-white/50 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/10 transition flex items-center space-x-2">
+                            <i class="fas fa-play-circle"></i>
+                            <span>Learn More</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="relative flex justify-center fade-in">
+                    <div class="relative float-animation">
+                        <div class="relative">
+                            <!-- Insole Illustration -->
+                            <svg viewBox="0 0 300 500" class="w-72 md:w-96 h-auto drop-shadow-2xl">
+                                <defs>
+                                    <linearGradient id="insoleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#e8f5e9" />
+                                        <stop offset="100%" style="stop-color:#c8e6c9" />
+                                    </linearGradient>
+                                    <linearGradient id="sensorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#3b82f6" />
+                                        <stop offset="100%" style="stop-color:#1d4ed8" />
+                                    </linearGradient>
+                                </defs>
+
+                                <!-- Insole Base -->
+                                <path
+                                    d="M80 40 C80 20, 100 10, 130 10 C170 10, 200 25, 200 50 C200 70, 190 90, 175 110 C160 130, 160 150, 170 180 C180 210, 200 240, 210 270 C220 300, 220 330, 210 360 C200 390, 180 420, 160 440 C140 460, 120 470, 100 480 C80 490, 60 495, 50 495 C30 495, 15 485, 10 470 C5 455, 10 430, 25 400 C40 370, 60 340, 70 310 C80 280, 80 250, 70 220 C60 190, 40 160, 30 130 C20 100, 20 70, 35 50 C50 30, 70 20, 80 40 Z"
+                                    fill="url(#insoleGrad)" stroke="#81c784" stroke-width="3" />
+
+                                <!-- Pressure Sensors -->
+                                <circle cx="110" cy="80" r="10" fill="url(#sensorGrad)" class="pulse-glow" />
+                                <circle cx="170" cy="85" r="10" fill="url(#sensorGrad)" class="pulse-glow" />
+                                <circle cx="85" cy="150" r="10" fill="url(#sensorGrad)" class="pulse-glow" />
+                                <circle cx="180" cy="160" r="10" fill="url(#sensorGrad)" class="pulse-glow" />
+                                <circle cx="100" cy="280" r="10" fill="url(#sensorGrad)" class="pulse-glow" />
+                                <circle cx="165" cy="290" r="10" fill="url(#sensorGrad)" class="pulse-glow" />
+
+                                <!-- Temperature Sensors -->
+                                <rect x="125" y="100" width="12" height="12" rx="3" fill="#10b981" />
+                                <rect x="160" y="105" width="12" height="12" rx="3" fill="#10b981" />
+                                <rect x="90" y="200" width="12" height="12" rx="3" fill="#10b981" />
+                                <rect x="175" y="205" width="12" height="12" rx="3" fill="#10b981" />
+
+                                <!-- ESP32 Module -->
+                                <rect x="100" y="380" width="100" height="50" rx="8" fill="#1e293b" stroke="#475569"
+                                    stroke-width="2" />
+                                <text x="150" y="410" text-anchor="middle" fill="#60a5fa" font-size="10"
+                                    font-weight="bold">ESP32</text>
+                                <circle cx="120" cy="395" r="3" fill="#22c55e" />
+                                <circle cx="180" cy="395" r="3" fill="#ef4444" />
+
+                                <!-- Connection Lines -->
+                                <path d="M110 80 L135 105" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4,2"
+                                    opacity="0.6" />
+                                <path d="M170 85 L166 105" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4,2"
+                                    opacity="0.6" />
+                                <path d="M85 150 L125 106" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4,2"
+                                    opacity="0.6" />
+                                <path d="M180 160 L166 106" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4,2"
+                                    opacity="0.6" />
+                                <path d="M150 380 L150 340" stroke="#3b82f6" stroke-width="2" opacity="0.8" />
+                            </svg>
+                        </div>
+
+                        <!-- Floating Icons -->
+                        <div class="absolute -top-4 -right-4 bg-white rounded-2xl p-3 shadow-xl pulse-glow">
+                            <i class="fas fa-wifi text-blue-500 text-2xl"></i>
+                        </div>
+                        <div class="absolute top-1/3 -left-8 bg-white rounded-2xl p-3 shadow-xl float-animation">
+                            <i class="fas fa-temperature-high text-red-500 text-2xl"></i>
+                        </div>
+                        <div class="absolute bottom-1/4 -right-6 bg-white rounded-2xl p-3 shadow-xl float-animation">
+                            <i class="fas fa-mobile-alt text-green-500 text-2xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wave Separator -->
+        <div class="absolute bottom-0 left-0 right-0">
+            <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M0 120L48 105C96 90 192 60 288 45C384 30 480 30 576 37.5C672 45 768 60 864 67.5C960 75 1056 75 1152 67.5C1248 60 1344 45 1392 37.5L1440 30V120H1392C1344 120 1248 120 1152 120C1056 120 960 120 864 120C768 120 672 120 576 120C480 120 384 120 288 120C192 120 96 120 48 120H0Z"
+                    fill="white" />
+            </svg>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section id="problem" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <span class="inline-block bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                    <i class="fas fa-exclamation-triangle mr-2"></i>The Problem
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                    Why <span class="gradient-text">Foot Health</span> Matters
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Diabetes can lead to serious foot complications that often go unnoticed until it's too late.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div
+                    class="card-hover bg-gradient-to-br from-red-50 to-orange-50 rounded-2xl p-6 border border-red-100 fade-in">
+                    <div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-user-injured text-red-500 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Loss of Sensation</h3>
+                    <p class="text-gray-600">
+                        Diabetic neuropathy causes gradual loss of foot sensation, making patients unable to feel pain
+                        or discomfort.
+                    </p>
+                </div>
+
+                <div
+                    class="card-hover bg-gradient-to-br from-orange-50 to-yellow-50 rounded-2xl p-6 border border-orange-100 fade-in">
+                    <div class="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-thermometer-half text-orange-500 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Unnoticed Changes</h3>
+                    <p class="text-gray-600">
+                        Pressure points and temperature changes go unnoticed, leading to tissue damage and inflammation.
+                    </p>
+                </div>
+
+                <div
+                    class="card-hover bg-gradient-to-br from-yellow-50 to-red-50 rounded-2xl p-6 border border-yellow-100 fade-in">
+                    <div class="w-16 h-16 bg-yellow-100 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-procedures text-red-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Risk of Amputation</h3>
+                    <p class="text-gray-600">
+                        Untreated foot ulcers can lead to severe infections, potentially requiring amputation.
+                    </p>
+                </div>
+
+                <div
+                    class="card-hover bg-gradient-to-br from-gray-50 to-blue-50 rounded-2xl p-6 border border-gray-200 fade-in">
+                    <div class="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-money-bill-wave text-gray-500 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Expensive Solutions</h3>
+                    <p class="text-gray-600">
+                        Current monitoring systems are costly, lack real-time capabilities, and are often inaccessible.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Statistics Bar -->
+            <div class="mt-16 bg-gradient-to-r from-red-500 to-orange-500 rounded-3xl p-8 md:p-12 fade-in">
+                <div class="grid md:grid-cols-3 gap-8 text-center text-white">
+                    <div>
+                        <div class="text-4xl md:text-5xl font-bold mb-2">85%</div>
+                        <p class="text-white/80">of diabetes amputations start with foot ulcers</p>
+                    </div>
+                    <div>
+                        <div class="text-4xl md:text-5xl font-bold mb-2">50%</div>
+                        <p class="text-white/80">of diabetic patients have neuropathy</p>
+                    </div>
+                    <div>
+                        <div class="text-4xl md:text-5xl font-bold mb-2">$15K+</div>
+                        <p class="text-white/80">average cost for foot ulcer treatment</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section id="solution" class="py-20 bg-gradient-to-b from-gray-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <span
+                    class="inline-block bg-green-100 text-green-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                    <i class="fas fa-lightbulb mr-2"></i>Our Solution
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                    The <span class="gradient-text">StepWise</span> Smart Insole
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Advanced sensor technology combined with AI-powered analytics for comprehensive foot health
+                    monitoring.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Tech Specs -->
+                <div class="space-y-6">
+                    <div
+                        class="card-hover bg-white rounded-2xl p-6 shadow-lg border border-gray-100 fade-in flex items-start space-x-4">
+                        <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-tachometer-alt text-blue-600 text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-1">6 Pressure Sensors</h3>
+                            <p class="text-gray-600">Strategically placed to monitor pressure distribution across the
+                                foot in real-time.</p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="card-hover bg-white rounded-2xl p-6 shadow-lg border border-gray-100 fade-in flex items-start space-x-4">
+                        <div class="w-14 h-14 bg-red-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-thermometer-three-quarters text-red-600 text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-1">4 Temperature Sensors</h3>
+                            <p class="text-gray-600">Detect abnormal temperature variations that may indicate
+                                inflammation or infection.</p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="card-hover bg-white rounded-2xl p-6 shadow-lg border border-gray-100 fade-in flex items-start space-x-4">
+                        <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-microchip text-green-600 text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-1">ESP32 Microcontroller</h3>
+                            <p class="text-gray-600">High-performance processing unit with ultra-low power consumption
+                                for 24/7 monitoring.</p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="card-hover bg-white rounded-2xl p-6 shadow-lg border border-gray-100 fade-in flex items-start space-x-4">
+                        <div class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-broadcast-tower text-purple-600 text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-1">WiFi & Bluetooth</h3>
+                            <p class="text-gray-600">Seamless real-time data transmission to your mobile device via WiFi
+                                and Bluetooth.</p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="card-hover bg-white rounded-2xl p-6 shadow-lg border border-gray-100 fade-in flex items-start space-x-4">
+                        <div class="w-14 h-14 bg-indigo-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-brain text-indigo-600 text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-1">AI-Based Alerts</h3>
+                            <p class="text-gray-600">Intelligent machine learning algorithms analyze patterns and
+                                predict potential issues.</p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="card-hover bg-white rounded-2xl p-6 shadow-lg border border-gray-100 fade-in flex items-start space-x-4">
+                        <div class="w-14 h-14 bg-pink-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-spa text-pink-600 text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-1">Built-in Massager</h3>
+                            <p class="text-gray-600">Gentle vibration therapy helps improve blood circulation and
+                                relieve foot fatigue.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- App Mockup -->
+                <div class="flex justify-center fade-in">
+                    <div class="relative">
+                        <!-- Phone Frame -->
+                        <div class="relative w-72 bg-gray-900 rounded-[3rem] p-3 shadow-2xl pulse-glow">
+                            <div class="bg-white rounded-[2.5rem] overflow-hidden">
+                                <!-- Phone Notch -->
+                                <div class="flex justify-center pt-2">
+                                    <div class="w-24 h-6 bg-gray-900 rounded-full"></div>
+                                </div>
+
+                                <!-- App Content -->
+                                <div class="px-4 pb-6">
+                                    <!-- Header -->
+                                    <div class="flex items-center justify-between py-4">
+                                        <div class="flex items-center space-x-2">
+                                            <div
+                                                class="w-8 h-8 rounded-lg gradient-bg flex items-center justify-center">
+                                                <i class="fas fa-shoe-prints text-white text-sm"></i>
+                                            </div>
+                                            <span class="font-bold gradient-text">StepWise</span>
+                                        </div>
+                                        <i class="fas fa-bell text-gray-500"></i>
+                                    </div>
+
+                                    <!-- Status Card -->
+                                    <div
+                                        class="bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl p-4 text-white mb-4">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <span class="text-sm opacity-80">Foot Health Status</span>
+                                            <span class="bg-white/20 px-2 py-1 rounded-full text-xs">Excellent</span>
+                                        </div>
+                                        <div class="flex items-end justify-between">
+                                            <div>
+                                                <div class="text-3xl font-bold">96%</div>
+                                                <div class="text-xs opacity-80">Last updated: 2 min ago</div>
+                                            </div>
+                                            <div class="w-16 h-16 relative">
+                                                <svg class="w-16 h-16 transform -rotate-90">
+                                                    <circle cx="32" cy="32" r="28" stroke="rgba(255,255,255,0.3)"
+                                                        stroke-width="5" fill="none" />
+                                                    <circle cx="32" cy="32" r="28" stroke="white" stroke-width="5"
+                                                        fill="none" stroke-dasharray="175.93" stroke-dashoffset="7"
+                                                        stroke-linecap="round" />
+                                                </svg>
+                                                <i
+                                                    class="fas fa-check absolute inset-0 flex items-center justify-center text-white text-xl"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Sensor Readings -->
+                                    <div class="space-y-3 mb-4">
+                                        <h4 class="font-semibold text-gray-800">Real-Time Readings</h4>
+
+                                        <div class="flex items-center justify-between bg-gray-50 rounded-xl p-3">
+                                            <div class="flex items-center space-x-3">
+                                                <div
+                                                    class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                                    <i class="fas fa-weight text-blue-600"></i>
+                                                </div>
+                                                <span class="text-sm font-medium text-gray-700">Pressure</span>
+                                            </div>
+                                            <div class="text-right">
+                                                <div class="font-bold text-green-600">Normal</div>
+                                                <div class="text-xs text-gray-500">32 kPa avg</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex items-center justify-between bg-gray-50 rounded-xl p-3">
+                                            <div class="flex items-center space-x-3">
+                                                <div
+                                                    class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                                                    <i class="fas fa-thermometer-half text-red-600"></i>
+                                                </div>
+                                                <span class="text-sm font-medium text-gray-700">Temperature</span>
+                                            </div>
+                                            <div class="text-right">
+                                                <div class="font-bold text-green-600">Stable</div>
+                                                <div class="text-xs text-gray-500">36.8°C</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Alert -->
+                                    <div
+                                        class="bg-blue-50 border border-blue-200 rounded-xl p-3 flex items-start space-x-3">
+                                        <i class="fas fa-info-circle text-blue-600 mt-0.5"></i>
+                                        <div>
+                                            <p class="text-sm font-medium text-blue-800">Daily Tip</p>
+                                            <p class="text-xs text-blue-600">Consider taking a short walk to improve
+                                                circulation.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Floating Elements -->
+                        <div class="absolute -top-4 -right-8 bg-white rounded-xl p-3 shadow-lg float-animation">
+                            <i class="fas fa-check-circle text-green-500 text-2xl"></i>
+                        </div>
+                        <div class="absolute -bottom-4 -left-8 bg-white rounded-xl p-3 shadow-lg float-animation">
+                            <i class="fas fa-chart-line text-blue-500 text-2xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <span class="inline-block bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                    <i class="fas fa-star mr-2"></i>Key Features
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                    Why Choose <span class="gradient-text">StepWise</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Cutting-edge features designed to keep your feet healthy and protected.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="card-hover text-center fade-in">
+                    <div class="relative mb-6 inline-block">
+                        <div
+                            class="w-24 h-24 bg-gradient-to-br from-blue-400 to-blue-600 rounded-3xl flex items-center justify-center shadow-lg shadow-blue-500/30">
+                            <i class="fas fa-broadcast-tower text-white text-4xl"></i>
+                        </div>
+                        <div
+                            class="absolute -bottom-2 -right-2 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-bolt text-white text-sm"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Real-Time Monitoring</h3>
+                    <p class="text-gray-600">
+                        Continuous tracking of pressure, temperature, and activity levels 24/7.
+                    </p>
+                </div>
+
+                <div class="card-hover text-center fade-in">
+                    <div class="relative mb-6 inline-block">
+                        <div
+                            class="w-24 h-24 bg-gradient-to-br from-green-400 to-emerald-600 rounded-3xl flex items-center justify-center shadow-lg shadow-green-500/30">
+                            <i class="fas fa-bell text-white text-4xl"></i>
+                        </div>
+                        <div
+                            class="absolute -bottom-2 -right-2 w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-exclamation text-white text-sm"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Smart Alerts System</h3>
+                    <p class="text-gray-600">
+                        AI-powered notifications alert you before potential issues become serious.
+                    </p>
+                </div>
+
+                <div class="card-hover text-center fade-in">
+                    <div class="relative mb-6 inline-block">
+                        <div
+                            class="w-24 h-24 bg-gradient-to-br from-purple-400 to-indigo-600 rounded-3xl flex items-center justify-center shadow-lg shadow-purple-500/30">
+                            <i class="fas fa-feather-alt text-white text-4xl"></i>
+                        </div>
+                        <div
+                            class="absolute -bottom-2 -right-2 w-8 h-8 bg-pink-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-heart text-white text-sm"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Comfortable Design</h3>
+                    <p class="text-gray-600">
+                        Ergonomic, lightweight design that fits easily into any shoe without discomfort.
+                    </p>
+                </div>
+
+                <div class="card-hover text-center fade-in">
+                    <div class="relative mb-6 inline-block">
+                        <div
+                            class="w-24 h-24 bg-gradient-to-br from-teal-400 to-cyan-600 rounded-3xl flex items-center justify-center shadow-lg shadow-teal-500/30">
+                            <i class="fas fa-shield-alt text-white text-4xl"></i>
+                        </div>
+                        <div
+                            class="absolute -bottom-2 -right-2 w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-check text-white text-sm"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Preventive Healthcare</h3>
+                    <p class="text-gray-600">
+                        Focus on early detection and prevention rather than reactive treatment.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- UVP Section -->
+    <section class="py-20 gradient-bg relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-10">
+            <div class="absolute top-10 left-10 w-40 h-40 border-2 border-white rounded-full"></div>
+            <div class="absolute bottom-10 right-10 w-60 h-60 border-2 border-white rounded-full"></div>
+            <div class="absolute top-1/2 left-1/4 w-20 h-20 border-2 border-white rounded-full"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="text-center mb-16 fade-in">
+                <span class="inline-block bg-white/20 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                    <i class="fas fa-gem mr-2"></i>Unique Value Proposition
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+                    What Makes Us Different
+                </h2>
+                <p class="text-xl text-white/80 max-w-3xl mx-auto">
+                    StepWise combines advanced technology with affordability to deliver unmatched foot health care.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div
+                    class="card-hover bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20 text-center fade-in">
+                    <div class="w-20 h-20 bg-white/20 rounded-3xl flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-tags text-white text-4xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Affordable</h3>
+                    <p class="text-white/80 text-lg">
+                        A fraction of the cost compared to traditional monitoring systems, making preventive healthcare
+                        accessible to everyone.
+                    </p>
+                </div>
+
+                <div
+                    class="card-hover bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20 text-center fade-in">
+                    <div class="w-20 h-20 bg-white/20 rounded-3xl flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-search-plus text-white text-4xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Early Detection</h3>
+                    <p class="text-white/80 text-lg">
+                        Our AI algorithms detect potential complications weeks before symptoms appear, allowing for
+                        timely intervention.
+                    </p>
+                </div>
+
+                <div
+                    class="card-hover bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20 text-center fade-in">
+                    <div class="w-20 h-20 bg-white/20 rounded-3xl flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-hospital text-white text-4xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Reduced Hospital Visits</h3>
+                    <p class="text-white/80 text-lg">
+                        Proactive monitoring significantly reduces emergency room visits, hospital stays, and associated
+                        healthcare costs.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <span class="inline-block bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                    <i class="fas fa-cogs mr-2"></i>How It Works
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                    Simple <span class="gradient-text">4-Step Process</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Advanced technology made simple for everyday use.
+                </p>
+            </div>
+
+            <div class="relative">
+                <!-- Connection Line -->
+                <div
+                    class="hidden lg:block absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-green-500 to-emerald-500 transform -translate-y-1/2 rounded-full">
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div
+                        class="card-hover bg-white rounded-3xl p-8 shadow-lg border border-gray-100 text-center fade-in relative">
+                        <div
+                            class="absolute top-4 right-4 w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                            1
+                        </div>
+                        <div
+                            class="w-20 h-20 bg-gradient-to-br from-blue-100 to-blue-200 rounded-3xl flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-sensor text-blue-600 text-4xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Data Collection</h3>
+                        <p class="text-gray-600">
+                            Embedded sensors continuously collect pressure and temperature data from multiple points on
+                            your foot.
+                        </p>
+                    </div>
+
+                    <div
+                        class="card-hover bg-white rounded-3xl p-8 shadow-lg border border-gray-100 text-center fade-in relative">
+                        <div
+                            class="absolute top-4 right-4 w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                            2
+                        </div>
+                        <div
+                            class="w-20 h-20 bg-gradient-to-br from-green-100 to-green-200 rounded-3xl flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-microchip text-green-600 text-4xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Processing</h3>
+                        <p class="text-gray-600">
+                            ESP32 microcontroller processes data locally and transmits securely via WiFi/Bluetooth.
+                        </p>
+                    </div>
+
+                    <div
+                        class="card-hover bg-white rounded-3xl p-8 shadow-lg border border-gray-100 text-center fade-in relative">
+                        <div
+                            class="absolute top-4 right-4 w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                            3
+                        </div>
+                        <div
+                            class="w-20 h-20 bg-gradient-to-br from-purple-100 to-purple-200 rounded-3xl flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-brain text-purple-600 text-4xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">AI Analysis</h3>
+                        <p class="text-gray-600">
+                            Mobile app uses machine learning to analyze patterns, trends, and detect anomalies.
+                        </p>
+                    </div>
+
+                    <div
+                        class="card-hover bg-white rounded-3xl p-8 shadow-lg border border-gray-100 text-center fade-in relative">
+                        <div
+                            class="absolute top-4 right-4 w-10 h-10 bg-red-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                            4
+                        </div>
+                        <div
+                            class="w-20 h-20 bg-gradient-to-br from-red-100 to-red-200 rounded-3xl flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-bell text-red-600 text-4xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Real-Time Alerts</h3>
+                        <p class="text-gray-600">
+                            Instant notifications and actionable insights delivered to your smartphone.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Target Users Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <span
+                    class="inline-block bg-purple-100 text-purple-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                    <i class="fas fa-users mr-2"></i>Target Users
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                    Who Can Benefit from <span class="gradient-text">StepWise</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Designed for individuals and healthcare providers committed to proactive foot health management.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div
+                    class="card-hover bg-gradient-to-br from-blue-50 to-indigo-50 rounded-3xl p-8 border border-blue-100 fade-in">
+                    <div
+                        class="w-28 h-28 mx-auto mb-6 rounded-full bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center shadow-lg">
+                        <i class="fas fa-user text-white text-5xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 text-center mb-4">Diabetic Patients</h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Type 1 and Type 2 diabetes patients</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Those with diagnosed neuropathy</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Patients with history of foot ulcers</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Anyone seeking preventive foot care</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div
+                    class="card-hover bg-gradient-to-br from-green-50 to-emerald-50 rounded-3xl p-8 border border-green-100 fade-in">
+                    <div
+                        class="w-28 h-28 mx-auto mb-6 rounded-full bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center shadow-lg">
+                        <i class="fas fa-blind text-white text-5xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 text-center mb-4">Elderly People</h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Seniors with reduced mobility</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Those with poor circulation</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Individuals living alone</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Care recipients needing monitoring</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div
+                    class="card-hover bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl p-8 border border-purple-100 fade-in">
+                    <div
+                        class="w-28 h-28 mx-auto mb-6 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center shadow-lg">
+                        <i class="fas fa-hospital text-white text-5xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 text-center mb-4">Healthcare Providers</h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Hospitals and specialty clinics</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Podiatrists and endocrinologists</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Rehabilitation centers</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Long-term care facilities</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Metrics Section -->
+    <section class="py-20 bg-gradient-to-b from-gray-900 to-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <span
+                    class="inline-block bg-blue-500/20 text-blue-400 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                    <i class="fas fa-chart-bar mr-2"></i>Our Impact
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+                    Proven <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-green-400">Results</span>
+                </h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    Clinical trials and real-world data demonstrate StepWise's effectiveness.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="card-hover text-center p-8 rounded-3xl bg-white/5 border border-white/10 fade-in">
+                    <div class="relative inline-block mb-6">
+                        <div
+                            class="w-32 h-32 rounded-full border-4 border-blue-500/20 flex items-center justify-center">
+                            <div
+                                class="w-24 h-24 rounded-full border-4 border-blue-500/40 flex items-center justify-center">
+                                <div class="text-center">
+                                    <div class="text-3xl font-bold text-blue-400">97%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Ulcer Detection Rate</h3>
+                    <p class="text-gray-400">Early detection of potential foot complications</p>
+                </div>
+
+                <div class="card-hover text-center p-8 rounded-3xl bg-white/5 border border-white/10 fade-in">
+                    <div class="relative inline-block mb-6">
+                        <div
+                            class="w-32 h-32 rounded-full border-4 border-green-500/20 flex items-center justify-center">
+                            <div
+                                class="w-24 h-24 rounded-full border-4 border-green-500/40 flex items-center justify-center">
+                                <div class="text-center">
+                                    <div class="text-3xl font-bold text-green-400">99%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Alert Accuracy</h3>
+                    <p class="text-gray-400">Minimal false positives with AI filtering</p>
+                </div>
+
+                <div class="card-hover text-center p-8 rounded-3xl bg-white/5 border border-white/10 fade-in">
+                    <div class="relative inline-block mb-6">
+                        <div
+                            class="w-32 h-32 rounded-full border-4 border-purple-500/20 flex items-center justify-center">
+                            <div
+                                class="w-24 h-24 rounded-full border-4 border-purple-500/40 flex items-center justify-center">
+                                <div class="text-center">
+                                    <div class="text-3xl font-bold text-purple-400">78%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Reduced Hospital Visits</h3>
+                    <p class="text-gray-400">Fewer emergency room visits and admissions</p>
+                </div>
+
+                <div class="card-hover text-center p-8 rounded-3xl bg-white/5 border border-white/10 fade-in">
+                    <div class="relative inline-block mb-6">
+                        <div
+                            class="w-32 h-32 rounded-full border-4 border-orange-500/20 flex items-center justify-center">
+                            <div
+                                class="w-24 h-24 rounded-full border-4 border-orange-500/40 flex items-center justify-center">
+                                <div class="text-center">
+                                    <div class="text-3xl font-bold text-orange-400">94%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">User Retention</h3>
+                    <p class="text-gray-400">High satisfaction and continued usage rates</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="py-20 relative overflow-hidden">
+        <div class="absolute inset-0 gradient-bg"></div>
+        <div class="absolute inset-0 opacity-30">
+            <div class="absolute top-0 left-0 w-full h-full"
+                style="background-image: url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');">
+            </div>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="text-center fade-in">
+                <div class="inline-flex items-center bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full mb-8">
+                    <i class="fas fa-heart text-pink-300 text-xl mr-3"></i>
+                    <span class="text-white font-medium">Your Foot Health Matters</span>
+                </div>
+
+                <h2 class="text-4xl md:text-6xl font-bold text-white mb-6">
+                    Protect Your Feet <span class="text-green-300">Today</span>
+                </h2>
+
+                <p class="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
+                    Join thousands of satisfied users who trust StepWise to keep their feet healthy. Get started on your
+                    preventive healthcare journey.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                    <button
+                        class="bg-white text-blue-600 px-10 py-5 rounded-full font-bold text-lg hover:bg-gray-50 transition shadow-2xl flex items-center justify-center space-x-3">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>Contact Us</span>
+                    </button>
+                    <button
+                        class="border-2 border-white text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-white/10 transition flex items-center justify-center space-x-3">
+                        <i class="fas fa-user-plus"></i>
+                        <span>Join Now</span>
+                    </button>
+                </div>
+
+                <!-- Contact Cards -->
+                <div class="grid sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                        <div class="w-14 h-14 bg-blue-500 rounded-xl flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-phone text-white text-2xl"></i>
+                        </div>
+                        <div class="text-white font-medium mb-1">Call Us</div>
+                        <div class="text-white/80 text-sm">+91 6304469539</div>
+                    </div>
+
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                        <div class="w-14 h-14 bg-green-500 rounded-xl flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-envelope text-white text-2xl"></i>
+                        </div>
+                        <div class="text-white font-medium mb-1">Email Us</div>
+                        <div class="text-white/80 text-sm">info@stepwise.ai</div>
+                    </div>
+
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                        <div class="w-14 h-14 bg-purple-500 rounded-xl flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-map-marker-alt text-white text-2xl"></i>
+                        </div>
+                        <div class="text-white font-medium mb-1">Location</div>
+                        <div class="text-white/80 text-sm">kalasalingam univesity , krishnan kovil,TamilNadu</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div class="lg:col-span-2">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-12 h-12 rounded-xl gradient-bg flex items-center justify-center">
+                            <i class="fas fa-shoe-prints text-white text-2xl"></i>
+                        </div>
+                        <span class="text-3xl font-bold">StepWise</span>
+                    </div>
+                    <p class="text-gray-400 text-lg mb-6 max-w-md">
+                        Smart Insole System for Diabetic Foot Ulcer Prevention. Using advanced sensor technology and AI
+                        to keep your feet healthy.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#"
+                            class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-sky-500 transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#"
+                            class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-pink-600 transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#"
+                            class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-700 transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Quick Links</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition flex items-center">
+                                <i class="fas fa-chevron-right text-blue-500 mr-2 text-xs"></i>Home
+                            </a></li>
+                        <li><a href="#problem" class="text-gray-400 hover:text-white transition flex items-center">
+                                <i class="fas fa-chevron-right text-blue-500 mr-2 text-xs"></i>The Problem
+                            </a></li>
+                        <li><a href="#solution" class="text-gray-400 hover:text-white transition flex items-center">
+                                <i class="fas fa-chevron-right text-blue-500 mr-2 text-xs"></i>Our Solution
+                            </a></li>
+                        <li><a href="#features" class="text-gray-400 hover:text-white transition flex items-center">
+                                <i class="fas fa-chevron-right text-blue-500 mr-2 text-xs"></i>Features
+                            </a></li>
+                        <li><a href="#how-it-works" class="text-gray-400 hover:text-white transition flex items-center">
+                                <i class="fas fa-chevron-right text-blue-500 mr-2 text-xs"></i>How It Works
+                            </a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Contact Us</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div
+                                class="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mr-3">
+                                <i class="fas fa-phone-alt text-blue-400"></i>
+                            </div>
+                            <div class="text-gray-400">
+                                <div class="text-sm text-gray-500 mb-1">Team StepWise</div>
+                                <div>+91 6304469539</div>
+                                <div>+91 9515197737</div>
+                                <div>+91 8247643676</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div
+                                class="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mr-3">
+                                <i class="fas fa-envelope text-green-400"></i>
+                            </div>
+                            <div class="text-gray-400">
+                                <div class="text-sm text-gray-500 mb-1">Email</div>
+                                <div>info@stepwise.ai</div>
+                                <div>support@stepwise.ai</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div
+                                class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mr-3">
+                                <i class="fas fa-map-marker-alt text-purple-400"></i>
+                            </div>
+                            <div class="text-gray-400">
+                                <div class="text-sm text-gray-500 mb-1">Address</div>
+                                <div>kalasalingam univesity , krishnan kovil,TamilNadu</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="text-gray-500 mb-4 md:mb-0">
+                        © 2024 StepWise. All rights reserved. Built with <i class="fas fa-heart text-red-500"></i> by
+                        Team StepWise.
+                    </div>
+                    <div class="flex space-x-6 text-gray-500">
+                        <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                        <a href="#" class="hover:text-white transition">Terms of Service</a>
+                        <a href="#" class="hover:text-white transition">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scroll-top"
+        class="fixed bottom-8 right-8 w-14 h-14 gradient-bg rounded-full shadow-2xl flex items-center justify-center text-white opacity-0 invisible transition-all duration-300 hover:scale-110 z-50">
+        <i class="fas fa-arrow-up text-xl"></i>
+    </button>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            const icon = menuBtn.querySelector('i');
+            if (mobileMenu.classList.contains('open')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                const icon = menuBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        // Scroll Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Stagger animations for cards
+        document.querySelectorAll('.card-hover').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        // Scroll to Top Button
+        const scrollTopBtn = document.getElementById('scroll-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 500) {
+                scrollTopBtn.classList.remove('opacity-0', 'invisible');
+                scrollTopBtn.classList.add('opacity-100', 'visible');
+            } else {
+                scrollTopBtn.classList.add('opacity-0', 'invisible');
+                scrollTopBtn.classList.remove('opacity-100', 'visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Navbar background on scroll
+        const nav = document.querySelector('nav');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 100) {
+                nav.classList.add('shadow-md');
+            } else {
+                nav.classList.remove('shadow-md');
+            }
+        });
+
+        // Counter animation for metrics
+        function animateCounter(element, target, duration = 2000) {
+            let start = 0;
+            const increment = target / (duration / 16);
+
+            function updateCount() {
+                start += increment;
+                if (start < target) {
+                    element.textContent = Math.floor(start) + '%';
+                    requestAnimationFrame(updateCount);
+                } else {
+                    element.textContent = target + '%';
+                }
+            }
+
+            updateCount();
+        }
+
+        // Observe metrics section for counter animation
+        const metricsSection = document.querySelector('.bg-gradient-to-b.from-gray-900');
+        let countersAnimated = false;
+
+        const metricsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !countersAnimated) {
+                    countersAnimated = true;
+
+                    const counters = [
+                        { text: '97%', delay: 0 },
+                        { text: '99%', delay: 200 },
+                        { text: '78%', delay: 400 },
+                        { text: '94%', delay: 600 }
+                    ];
+
+                    const metricValues = document.querySelectorAll('.text-3xl.font-bold');
+                    metricValues.forEach((counter, index) => {
+                        if (counters[index]) {
+                            const target = parseInt(counters[index].text);
+                            setTimeout(() => {
+                                animateCounter(counter, target);
+                            }, counters[index].delay);
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+
+        if (metricsSection) {
+            metricsObserver.observe(metricsSection);
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
